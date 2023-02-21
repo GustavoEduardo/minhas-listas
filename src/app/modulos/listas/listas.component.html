@@ -1,0 +1,94 @@
+<div style="height: 100vh;" (mousedown)="showModalAddTarefavisible(false)">
+
+
+  <div class="titulo-lista">
+    <div class="header">
+      <span class="sub-titulo">
+        Minhas Tarefas
+      </span>
+    </div>
+    <h2>{{listaSelecionada.nome}}</h2>
+  </div>
+
+  <input class="d-none" type="checkbox" id="active" [checked]="openMenu" [(ngModel)]="openMenu">
+  <label for="active" class="menu-btn"><i class="fas fa-bars">
+    <div *ngIf="!openMenu" class="iconOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div *ngIf="openMenu" class="iconClose">
+        <span></span>
+        <span class="s1"></span>
+        <span class="s2"></span>
+    </div>
+  </i></label>
+  <div (mousedown)="showModalAddListavisible(false)"  class="wrapper">
+    <div class="header">
+      <span class="sub-titulo">
+        Minhas Listas
+      </span>
+    </div>
+    <ul>
+      <li (click)="selecioarLista(lista)" *ngFor="let lista of listas; let i = index">
+        <a class="{{lista.porcentagem == '100.00' ? 'success-title' : ''}}">{{lista.nome}}</a>
+        <div>
+          <span class="{{lista.porcentagem == '100.00' ? 'success' : ''}}">{{lista.porcentagem ? lista.porcentagem : 0}}%</span>
+          <button (click)="excluirLista(i)">
+            <mat-icon svgIcon="trash" aria-hidden="false"></mat-icon>
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <div class="footer">
+      <button class="btn-add btn-add-lista" (click)="showModalAddListavisible(true)">+</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <section>
+      <ul>
+        <li *ngFor="let tarefa of listaSelecionada.tarefas; let i = index">
+          <input type="checkbox" [checked]=tarefa.concluida  [(ngModel)]="tarefa.concluida">
+          <input maxlength="60" type="text" disabled="{{tarefa.concluida}}" class="{{tarefa.concluida ? 'checked' : ''}}" [(ngModel)]="tarefa.titulo">
+          <button (click)="excluirTarefa(i)">
+            <mat-icon svgIcon="trash" aria-hidden="false"></mat-icon>
+          </button>
+        </li>
+      </ul>
+      <div class="footer">
+        <button class="btn-add btn-add-tarefa {{openMenu ? 'd-none' : ''}}" (click)="showModalAddTarefavisible(true)">+</button>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+<div *ngIf="formAddListaVisible" class="modal modal-novaLista">
+  <form  #form="ngForm" (ngSubmit)="novaLista(form)">
+    <label>
+      Titulo:
+      <input maxlength="22" placeholder="Ex. Compra para o fim de samana" class="{{formInvalid ? 'formInvalid' : ''}}" type="text" name="titulo" #titulo="ngModel" [ngModel]="titulo.value" required>
+      <small style="color: red;" *ngIf="formInvalid">*Preencha o titulo da lista</small>
+    </label>
+    <div class="modal-footer">
+      <a (click)="showModalAddListavisible(false)">Cancelar</a>
+      <button type="submit">Adicionar</button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="formAddTarefaVisible" class="modal modal-novaTarefa">
+  <form #form="ngForm" (ngSubmit)="novaTarefa(form)">
+    <label>
+      Titulo:
+      <input maxlength="60" placeholder="Ex. Pagar internet" class="{{formInvalid ? 'formInvalid' : ''}}" type="text" name="titulo" #titulo="ngModel" [ngModel]="titulo.value" required>
+      <small style="color: red;" *ngIf="formInvalid">*Preencha o titulo da tarefa</small>
+    </label>
+    <div class="modal-footer">
+      <a (click)="showModalAddTarefavisible(false)">Cancelar</a>
+      <button type="submit">Adicionar</button>
+    </div>
+  </form>
+</div>

@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+$primary-color: rgb(92, 174, 207);
+$secondary-color: 'red';
+
+$primary-background-color: aliceblue;
+$secondary-background-color: 'red';
+
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  background-color: rgb(250, 254, 255);
+}
+
+input:focus{
+  outline: none;
+}
+
+button{
+  cursor: pointer;
+}
