@@ -18,9 +18,22 @@
   padding: 10px;
 }
 
+.principal{
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
 .container {
   width: 95%;
   margin: 0 auto;
+
+  section{
+    overflow: auto;
+    max-height: 80vh;
+    padding-bottom: 25px;
+    box-sizing: border-box;
+  }
 
   ul {
     margin-top: -15px;
@@ -59,6 +72,11 @@
 
 #active:checked ~ .wrapper{
   clip-path: circle(75%);
+}
+
+.ul-tarefas{
+  padding-bottom: 40px;
+  box-sizing: border-box;
 }
 
 .menu-btn{
@@ -126,23 +144,24 @@
   padding-top: 20px;
 
   @media (min-width:800px){
-    width: 98%;
+    width: 99%;
   }
 }
 
 .wrapper ul li{
   margin-top: 5px;
-  width: 100%;
+  min-width: 98%;
   text-decoration: none;
   font-size: larger;
   font-weight: 500;
-  padding: 10px 5px;
+  padding: 10px 0;
   color: #fff;
   line-height: 30px;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   border: 1px solid $primary-background-color;
+
 
   @media (min-width:800px){
     width: 98%;
@@ -175,10 +194,9 @@
 }
 
 .footer{
-    position: fixed;
-    bottom: 10px;
-    width: 100%;
-    text-align: right;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
 }
 
 .btn-add{
@@ -188,19 +206,17 @@
   font-size: xx-large;
   border-radius: 50px;
   box-shadow: 0 0 5px 1px rgba($color: #333333, $alpha: 0.4);
-
+  margin: 0 20px 15px 0;
 }
 
 .btn-add-lista{
     background-color: $primary-background-color;
     color: $primary-color;
-    margin: 0 20px 15px 0;
 }
 
 .btn-add-tarefa {
   background-color:  $primary-color;
   color: $primary-background-color;
-  margin: 0 30px 15px 0;
 
   @media (min-width:800px){
     margin: 0 60px 15px 0;

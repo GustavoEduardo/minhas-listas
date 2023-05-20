@@ -85,6 +85,9 @@ export class ListasComponent implements OnInit {
 
   showModalAddListavisible(visible: boolean){
     this.formAddListaVisible = visible;
+    setTimeout(()=>{
+      document.getElementById("input-new-list")?.focus()
+    ,300})
 
     if(!visible){
       this.formInvalid = false;
@@ -96,6 +99,11 @@ export class ListasComponent implements OnInit {
     form.value.titulo = form.value.titulo ? form.value.titulo.trim() : null;
 
     if(form.valid && form.value.titulo.length > 0){
+
+      if(this.existeLista(form.value.titulo)){
+        alert("Já existe uma lista com esse nome.")
+        return
+      }
 
       const newList = {
         nome: form.value.titulo,
@@ -127,6 +135,10 @@ export class ListasComponent implements OnInit {
 
   showModalAddTarefavisible(visible: boolean){
 
+    setTimeout(()=>{
+      document.getElementById("input-new-task")?.focus()
+    ,300})
+
     if(visible && (!this.listaSelecionada || this.listaSelecionada.nome?.length === 0)){
       this.formInvalid = false;
       alert("Selecione uma lista antes de criar uma tarefa");
@@ -144,6 +156,12 @@ export class ListasComponent implements OnInit {
     form.value.titulo = form.value.titulo ? form.value.titulo.trim() : null;
 
     if(form.valid && form.value.titulo.length > 0){
+
+      if(this.existeTarefa(form.value.titulo)){
+        alert("Já existe uma tarefa com esse nome.")
+        return
+      }
+
       this.listaSelecionada.tarefas.push({titulo: form.value.titulo, concluida: false});
       this.formInvalid = false;
       this.formAddTarefaVisible = false;
@@ -163,6 +181,21 @@ export class ListasComponent implements OnInit {
     if(confirm("tem certeza de que deseja excluir essa tarefa ?")) {
       this.listaSelecionada.tarefas.splice(index, 1);
     }
+  }
+
+  existeLista(nome: string){
+    const listas = localStorage.getItem('minhas-listas-vofazer');
+
+    let existe = JSON.parse(listas!).filter((l: any) => l.nome.toUpperCase() === nome.toUpperCase())
+
+    return existe.length > 0;
+  }
+
+  existeTarefa(titulo: string){
+
+    let existe = this.listaSelecionada.tarefas.filter((t: any)=> t.titulo.toUpperCase() === titulo.toUpperCase())
+
+    return existe.length > 0;
   }
 
 }
