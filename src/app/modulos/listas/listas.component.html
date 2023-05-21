@@ -28,10 +28,13 @@
       </span>
     </div>
     <ul class="ul-tarefas">
-      <li (click)="selecioarLista(lista)" *ngFor="let lista of listas; let i = index">
-        <a class="{{lista.porcentagem == '100.00' ? 'success-title' : ''}}">{{lista.nome}}</a>
-        <div>
-          <span class="{{lista.porcentagem == '100.00' ? 'success' : ''}}">{{lista.porcentagem ? lista.porcentagem : 0}}%</span>
+      <li (click)="selecioarLista(lista)" *ngFor="let lista of listas; let i = index"
+        class="{{lista.porcentagem == '100.00' ? 'success tarefa' : 'tarefa'}}">
+        <div class="box1">
+          <a class="{{lista.porcentagem == '100.00' ? 'success-title' : ''}}">{{lista.nome}}</a>
+          <span>{{lista.porcentagem ? lista.porcentagem : 0}}%</span>
+        </div>
+        <div class="box2">
           <button (click)="excluirLista(i)">
             <mat-icon svgIcon="trash" aria-hidden="false"></mat-icon>
           </button>
@@ -49,7 +52,7 @@
       <ul>
         <li *ngFor="let tarefa of listaSelecionada.tarefas; let i = index">
           <input type="checkbox" [checked]=tarefa.concluida  [(ngModel)]="tarefa.concluida">
-          <input maxlength="60" type="text" disabled="{{tarefa.concluida}}" class="{{tarefa.concluida ? 'checked' : ''}}" [(ngModel)]="tarefa.titulo">
+          <input class="input-task" maxlength="60" type="text" disabled="{{tarefa.concluida}}" class="{{tarefa.concluida ? 'checked' : ''}}" [(ngModel)]="tarefa.titulo">
           <button (click)="excluirTarefa(i)">
             <mat-icon svgIcon="trash" aria-hidden="false"></mat-icon>
           </button>

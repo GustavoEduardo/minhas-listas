@@ -1,4 +1,4 @@
-package com.vofazer.app;
+package com.organizer.app;
 
 import com.getcapacitor.BridgeActivity;
 

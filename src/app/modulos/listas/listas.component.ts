@@ -113,7 +113,7 @@ export class ListasComponent implements OnInit {
         porcentagem: 0
       }
 
-      this.listas.push(newList)
+      this.listas.unshift(newList)
       this.formInvalid = false;
       this.formAddListaVisible = false;
       localStorage.setItem('minhas-listas-vofazer',JSON.stringify(this.listas));
@@ -162,7 +162,7 @@ export class ListasComponent implements OnInit {
         return
       }
 
-      this.listaSelecionada.tarefas.push({titulo: form.value.titulo, concluida: false});
+      this.listaSelecionada.tarefas.unshift({titulo: form.value.titulo, concluida: false});
       this.formInvalid = false;
       this.formAddTarefaVisible = false;
       this.listas.forEach((l: any)=>{
@@ -186,14 +186,14 @@ export class ListasComponent implements OnInit {
   existeLista(nome: string){
     const listas = localStorage.getItem('minhas-listas-vofazer');
 
-    let existe = JSON.parse(listas!).filter((l: any) => l.nome.toUpperCase() === nome.toUpperCase())
+    let existe = JSON.parse(listas!).filter((l: any) => l.nome.toUpperCase().trim() === nome.toUpperCase().trim())
 
     return existe.length > 0;
   }
 
   existeTarefa(titulo: string){
 
-    let existe = this.listaSelecionada.tarefas.filter((t: any)=> t.titulo.toUpperCase() === titulo.toUpperCase())
+    let existe = this.listaSelecionada.tarefas.filter((t: any)=> t.titulo.toUpperCase().trim() === titulo.toUpperCase().trim())
 
     return existe.length > 0;
   }

@@ -41,12 +41,11 @@
 
   li{
     padding-bottom: 10px;
-    border-bottom: 1px solid #aeaeae;
   }
 }
 
 .success{
-  background-color: #166842;
+  background-color: #12bb6c5e;
   padding: 0 5px;
   border-radius: 10px;
   font-weight: 700;
@@ -161,6 +160,25 @@
   display: flex;
   flex-direction: column;
   border: 1px solid $primary-background-color;
+
+  &.tarefa{
+    display: grid;
+    grid-template-columns: 90% auto;
+    padding: 0px 10px 10px 10px;
+    box-sizing: border-box;
+  }
+
+  .box1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .box2{
+    display: flex;
+    flex-direction: column;
+    padding-right: 5px;
+    align-items: flex-start;
+  }
 
 
   @media (min-width:800px){

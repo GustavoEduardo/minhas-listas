@@ -1,9 +1,9 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.vofazer.app',
-  appName: 'A Fazer',
-  webDir: 'dist/vofazer',
+  appId: 'com.organizer.app',
+  appName: 'Organizer',
+  webDir: 'dist/organizer',
   bundledWebRuntime: false
 };
 
