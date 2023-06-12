@@ -74,7 +74,7 @@
 }
 
 .ul-tarefas{
-  padding-bottom: 40px;
+  padding-bottom: 60px;
   box-sizing: border-box;
 }
 
@@ -214,7 +214,9 @@
 .footer{
     position: absolute;
     bottom: 0px;
-    right: 0px;
+    right: calc(50% - 60px);
+    width: 65px;
+    margin: 0 20px 15px 0;
 }
 
 .btn-add{
@@ -361,4 +363,16 @@ ul{
       border-radius: 3px;
     }
   }
+}
+
+.d-none{
+  display: none;
+}
+
+.sem-listas{
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20%;
 }

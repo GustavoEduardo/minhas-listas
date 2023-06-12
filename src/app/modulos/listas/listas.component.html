@@ -8,8 +8,8 @@
     <h2>{{listaSelecionada.nome}}</h2>
   </div>
 
-  <input class="d-none" type="checkbox" id="active" [checked]="openMenu" [(ngModel)]="openMenu">
-  <label for="active" class="menu-btn"><i class="fas fa-bars">
+  <input disabled="{{listaSelecionada.length === 0}}" class="d-none" type="checkbox" id="active" [checked]="openMenu" [(ngModel)]="openMenu">
+  <label for="active" class="menu-btn"><i class="fas fa-bars" [ngClass]="[listaSelecionada.length == 0 ? 'd-none' : '']">
     <div *ngIf="!openMenu" class="iconOpen">
         <span></span>
         <span></span>
@@ -27,6 +27,11 @@
         Minhas Listas
       </span>
     </div>
+
+    <div class="sem-listas" *ngIf="listas.length === 0">
+      <img style="margin: 0 auto;" src="'../../../assets/pngwing.png">
+    </div>
+
     <ul class="ul-tarefas">
       <li (click)="selecioarLista(lista)" *ngFor="let lista of listas; let i = index"
         class="{{lista.porcentagem == '100.00' ? 'success tarefa' : 'tarefa'}}">
@@ -41,7 +46,6 @@
         </div>
       </li>
     </ul>
-
     <div class="footer">
       <button class="btn-add btn-add-lista" (click)="showModalAddListavisible(true)">+</button>
     </div>

@@ -36,7 +36,7 @@ export class ListasComponent implements OnInit {
 
   listaSelecionada: any = {nome: '', tarefas: []};
 
-  openMenu = false;
+  openMenu = true;
 
   formInvalid = false;
 
@@ -53,7 +53,7 @@ export class ListasComponent implements OnInit {
     this.listaSelecionada = JSON.parse(localStorage.getItem('lista-selecionada-vofazer') || JSON.stringify({nome: '', tarefas: []}));
 
     if(this.listas.length === 0){
-      alert("Crie uma lista de tarefas para começar.")
+      alert("Olá. Crie uma lista de tarefas para começar.📝")
       this.openMenu = true;
       this.showModalAddListavisible(true);
     }
@@ -196,6 +196,21 @@ export class ListasComponent implements OnInit {
     let existe = this.listaSelecionada.tarefas.filter((t: any)=> t.titulo.toUpperCase().trim() === titulo.toUpperCase().trim())
 
     return existe.length > 0;
+  }
+
+  ordenarListaSelecionada(asc = true){
+    this.listaSelecionada.sort((a: any ,b: any)=>{
+      if (a > b){
+        return -1
+      }
+
+      if (a < b){
+        return 1
+      }
+
+      return 0
+    })
+
   }
 
 }
